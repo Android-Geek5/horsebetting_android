@@ -1,0 +1,15 @@
+#Internal package file, do not edit.
+#Fri Jun 07 13:42:19 IST 2019
+1.base=C\:\\Users\\android_dev\\Documents\\Sahil_Android_project\\horsebetting_android\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\out
+2.path=NebulousContent.otf
+0.baseType=DIRECTORY
+2.base=C\:\\Users\\android_dev\\Documents\\Sahil_Android_project\\horsebetting_android\\app\\build\\intermediates\\merged_assets\\release\\out
+2.set=ASSET
+1.baseType=DIRECTORY
+count=3
+1.set=DEX
+0.path=fonts/NebulousContent.otf
+0.set=ASSET
+0.base=C\:\\Users\\android_dev\\Documents\\Sahil_Android_project\\horsebetting_android\\app\\build\\intermediates\\merged_assets\\release\\out
+2.baseType=DIRECTORY
+1.path=classes.dex

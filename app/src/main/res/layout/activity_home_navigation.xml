@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+
+    <include
+        layout="@layout/app_bar_home_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!--<include layout="@layout/nav_header_home_navigation" />-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".28"
+                android:background="@color/splash_bg_color"
+                android:gravity="bottom"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/margin_15"
+                android:paddingBottom="@dimen/margin_15">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/navigation_user_img"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        android:src="@drawable/img_horse" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/navigation_user_name_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Thrilling Picks"
+                        android:textColor="#504C4C"
+                        android:textSize="@dimen/text_17"
+                        android:textStyle="italic" />
+
+                    <TextView
+                        android:id="@+id/navigation_user_email_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:text="@string/first_last_name_text"
+                        android:textColor="@color/blackTextColor"
+                        android:textSize="@dimen/text_14" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <android.support.v4.widget.NestedScrollView
+                android:id="@+id/navigation_nested"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".72"
+                android:fillViewport="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="@dimen/margin_15">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/navigation_gray_color"
+                        android:gravity="center_vertical"
+                        android:paddingTop="@dimen/margin_10"
+                        android:paddingBottom="@dimen/margin_10">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/margin_15"
+                            android:src="@drawable/ic_wins" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="@string/recent_wins_string"
+                            android:textColor="@color/blackTextColor"
+                            android:textSize="@dimen/text_14" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/menu_recyler"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="@dimen/margin_5"
+                            android:paddingLeft="@dimen/margin_15"
+                            android:scrollbars="none" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/margin_1"
+                        android:layout_marginTop="@dimen/margin_20"
+                        android:background="@color/navoigation_view_gray_color" />
+
+                    <TextView
+                        android:id="@+id/invite_friends_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_20"
+                        android:drawableLeft="@drawable/share"
+                        android:drawablePadding="@dimen/margin_20"
+                        android:fontFamily="@font/poppins"
+                        android:paddingLeft="@dimen/margin_15"
+                        android:text="@string/invite_friends_string"
+                        android:textColor="@color/blackTextColor"
+                        android:textSize="@dimen/text_15" />
+
+                    <TextView
+                        android:id="@+id/cards_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_20"
+                        android:drawableLeft="@drawable/ic_cards"
+                        android:drawablePadding="@dimen/margin_20"
+                        android:fontFamily="@font/poppins"
+                        android:paddingLeft="@dimen/text_15"
+                        android:text="@string/cards_string"
+                        android:textColor="@color/blackTextColor"
+                        android:textSize="@dimen/text_15" />
+
+                    <RelativeLayout
+                        android:id="@+id/my_account_rl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_20">
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/ic_settings"
+                            android:drawablePadding="@dimen/margin_20"
+                            android:fontFamily="@font/poppins"
+                            android:paddingLeft="@dimen/text_15"
+                            android:text="@string/my_account_string"
+                            android:textColor="@color/blackTextColor"
+                            android:textSize="@dimen/text_15" />
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:paddingRight="@dimen/margin_10">
+
+                            <ImageView
+                                android:id="@+id/down_iv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_arrow_drop_down"
+                                android:visibility="gone" />
+
+                            <ImageView
+                                android:id="@+id/up_iv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_arrow_drop_up" />
+
+                        </RelativeLayout>
+                    </RelativeLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/accoun_items"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/margin_40"
+                        android:paddingBottom="@dimen/margin_2"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+            </android.support.v4.widget.NestedScrollView>
+
+        </LinearLayout>
+
+    </android.support.design.widget.NavigationView>
+</android.support.v4.widget.DrawerLayout>

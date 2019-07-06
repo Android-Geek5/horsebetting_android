@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="splash_bg_color">#F7D708</color>
+    <color name="editextBgColor">#F6F6F6</color>
+    <color name="blackTextColor">#101010</color>
+    <color name="hintColor">#868686</color>
+    <color name="redTextColor">#f03c05</color>
+    <color name="loginButtonBg">#88898B</color>
+    <color name="loginViewBg">#b1b1b1</color>
+    <color name="loginOrColor">#686868</color>
+    <color name="facebookBtnBg">#4872BA</color>
+    <color name="googleBtnBg">#F45D4C</color>
+    <color name="tabSelectedColor">#F13C03</color>
+
+    <!--Home Today Fragment color-->
+    <color name="itemBgColor">#FFFAFA</color>
+    <color name="itemTitleColor">#F03D03</color>
+    <color name="light_gray_color">#5A5A5A</color>
+    <color name="loaderBgColor">#F3F4F4</color>
+    <color name="color_light_gray">#D5D4D4</color>
+    <color name="gary_light_1_color">#F6F6F6</color>
+    <color name="black_color">#101010</color>
+    <color name="green_color">#2c8d05</color>
+    <color name="user_name_balck_color">#101010</color>
+    <color name="text_color">#D5D4D4</color>
+    <color name="navigation_gray_color">#E9E9E9</color>
+    <color name="navoigation_view_gray_color">#D6D6D6</color>
+    <color name="login_type_yellow_color">#F8B03B</color>
+    <color name="white_color">#ffffffff</color>
+
+</resources>

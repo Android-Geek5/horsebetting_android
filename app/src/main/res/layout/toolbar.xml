@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="#F7D708"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/margin_15"
+        android:layout_marginRight="@dimen/margin_15"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/home_menu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".15">
+
+            <ImageView
+                android:id="@+id/menu_iv"
+                android:layout_width="@dimen/margin_25"
+                android:layout_height="@dimen/margin_30"
+                android:src="@drawable/ic_menu" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/home_page_title_tv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".7"
+            android:fontFamily="@font/poppins_semibold"
+            android:gravity="left|center_vertical"
+            android:text="@string/home_string"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/margin_15" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".15"
+            android:gravity="right">
+
+
+            <ImageView
+                android:id="@+id/manu_setting_iv"
+                android:layout_width="@dimen/margin_25"
+                android:layout_height="@dimen/margin_30"
+                android:src="@drawable/ic_menu_dot"
+                android:visibility="gone" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

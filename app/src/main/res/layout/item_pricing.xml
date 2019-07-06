@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/margin_10"
+    android:layout_marginTop="@dimen/margin_7"
+    android:layout_marginRight="@dimen/margin_10"
+    android:layout_marginBottom="7dp">
+
+    <LinearLayout
+        android:id="@+id/pricing_item_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/price_item_bg"
+        android:gravity="center"
+        android:paddingLeft="@dimen/margin_15"
+        android:paddingTop="@dimen/margin_20"
+        android:paddingRight="@dimen/margin_15"
+        android:paddingBottom="@dimen/margin_15">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".75"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/valid_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="dummy"
+                android:textColor="@color/login_type_yellow_color"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/subscription_interval_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:text="dummy"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_14"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/desc_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:text="dummy"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_14" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".35">
+
+            <TextView
+                android:id="@+id/plan_price"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".2"
+                android:fontFamily="@font/poppins_bold"
+                android:gravity="right|bottom"
+                android:text="00$"
+                android:textColor="@color/login_type_yellow_color"
+                android:textSize="@dimen/text_23" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

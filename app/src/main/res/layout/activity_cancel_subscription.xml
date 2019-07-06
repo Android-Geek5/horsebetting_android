@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".views.activities.PricingActivity">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".07"
+        android:background="@color/splash_bg_color"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/margin_15"
+            android:layout_marginRight="@dimen/margin_15"
+            android:gravity="center">
+
+            <LinearLayout
+                android:id="@+id/cancel_subscription_back_ll"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".1">
+
+                <ImageView
+                    android:id="@+id/pricing_back_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_back" />
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/cancel_subscription_title_tv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".5"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="left|center_vertical"
+                android:text="My Subscription"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/text_16" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".4"
+                android:gravity="right"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".93">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/cancel_subscription_detail_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:paddingTop="30dp"
+                    android:paddingBottom="30dp">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Your Subscription auto-renews"
+                            android:textColor="@color/black_color"
+                            android:fontFamily="@font/poppins"
+                            android:textStyle="bold"
+                            android:textSize="17sp"
+                            android:textAlignment="center"/>
+                        <TextView
+                            android:id="@+id/cancel_subscription_date_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="on 00/00/0000"
+                            android:textColor="@color/black_color"
+                            android:fontFamily="@font/poppins"
+                            android:textStyle="bold"
+                            android:textSize="17sp"
+                            android:textAlignment="center"/>
+                        <TextView
+                            android:id="@+id/cancel_subscription_price_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="for $30.00"
+                            android:textColor="@color/black_color"
+                            android:fontFamily="@font/poppins"
+                            android:textStyle="bold"
+                            android:textSize="17sp"
+                            android:textAlignment="center"/>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/margin_15">
+
+            <Button
+                android:id="@+id/cancel_subscription_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_login_btn"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Cancel The Renewal"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_16"
+                android:translationZ="@dimen/margin_5" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</LinearLayout>

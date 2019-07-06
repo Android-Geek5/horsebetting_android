@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    tools:context=".views.activities.signUpFlow.ForgotPasswordActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/change_password_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_175"
+                android:background="@drawable/img_login_signup">
+
+                <ImageView
+                    android:id="@+id/change_password_back_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_10"
+                    android:src="@drawable/icon_back" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_10"
+                android:layout_marginRight="@dimen/margin_10"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/change_password_string"
+                    android:textColor="@color/blackTextColor"
+                    android:textSize="@dimen/text_16"
+                    app:fontFamily="@font/poppins_semibold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_15"
+                        android:layout_marginBottom="@dimen/margin_5"
+                        android:background="@drawable/bg_edit_text"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/margin_15">
+
+                        <ImageView
+                            android:layout_width="@dimen/margin_20"
+                            android:layout_height="@dimen/margin_20"
+                            android:src="@drawable/icon_password" />
+
+                        <EditText
+                            android:id="@+id/old_password_et"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@android:color/transparent"
+                            android:fontFamily="@font/poppins"
+                            android:gravity="center_vertical"
+                            android:hint="@string/old_password_string"
+                            android:inputType="textWebPassword"
+                            android:paddingLeft="@dimen/margin_10"
+                            android:singleLine="true"
+                            android:maxLength="50"
+                            android:textColorHint="@color/hintColor"
+                            android:textSize="@dimen/text_13" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_15"
+                        android:layout_marginBottom="@dimen/margin_5"
+                        android:background="@drawable/bg_edit_text"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/margin_15">
+
+                        <ImageView
+                            android:layout_width="@dimen/margin_20"
+                            android:layout_height="@dimen/margin_20"
+                            android:src="@drawable/icon_password" />
+
+                        <EditText
+                            android:id="@+id/new_password_et"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@android:color/transparent"
+                            android:fontFamily="@font/poppins"
+                            android:gravity="center_vertical"
+                            android:hint="@string/new_password_hint_string"
+                            android:inputType="textWebPassword"
+                            android:paddingLeft="@dimen/margin_10"
+                            android:singleLine="true"
+                            android:maxLength="50"
+                            android:textColorHint="@color/hintColor"
+                            android:textSize="@dimen/text_13" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_15"
+                        android:layout_marginBottom="@dimen/margin_5"
+                        android:background="@drawable/bg_edit_text"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/margin_15">
+
+                        <ImageView
+                            android:layout_width="@dimen/margin_20"
+                            android:layout_height="@dimen/margin_20"
+                            android:src="@drawable/icon_password" />
+
+                        <EditText
+                            android:id="@+id/confirm_password_et"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@android:color/transparent"
+                            android:fontFamily="@font/poppins"
+                            android:gravity="center_vertical"
+                            android:hint="@string/confirm_password_hint_string"
+                            android:inputType="textWebPassword"
+                            android:paddingLeft="@dimen/margin_10"
+                            android:singleLine="true"
+                            android:maxLength="50"
+                            android:textColorHint="@color/hintColor"
+                            android:textSize="@dimen/text_13" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_30">
+
+                    <Button
+                        android:id="@+id/change_password_btn_submit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_login_btn"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="@string/submit"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/text_16"
+                        android:translationZ="@dimen/margin_5" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
