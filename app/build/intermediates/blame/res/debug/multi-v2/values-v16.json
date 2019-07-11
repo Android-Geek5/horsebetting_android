@@ -4,7 +4,7 @@
             "outputFile": "C:\\Users\\android_dev\\Documents\\Sahil_Android_project\\horsebetting_android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v16\\values-v16.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\android_dev\\.gradle\\caches\\transforms-2\\files-2.1\\e8058bda364555e2d92c48443168dc26\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\android_dev\\.gradle\\caches\\transforms-2\\files-2.1\\088ed958d3b2d450d04c0629d353ef65\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\android_dev\\.gradle\\caches\\transforms-2\\files-2.1\\5f52a23f4882f902f9bcfaf7b1adee63\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\android_dev\\.gradle\\caches\\transforms-2\\files-2.1\\7565a3702db75e75d3ace3e7bc048e8f\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

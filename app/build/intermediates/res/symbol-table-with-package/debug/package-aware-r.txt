@@ -1522,6 +1522,7 @@ id coordinator
 id country_autocomplete_aaw
 id coupon_ll
 id coupon_spinner
+id crash_reporting_present
 id custom
 id customPanel
 id cvv_number
@@ -2176,6 +2177,7 @@ string change_password_string
 string character_counter_content_description
 string character_counter_pattern
 string choose_your_plan_string
+string com_crashlytics_android_build_id
 string com_facebook_device_auth_instructions
 string com_facebook_image_download_unknown_error
 string com_facebook_internet_permission_error_message
@@ -2225,6 +2227,7 @@ string cvc_multiline_helper_amex
 string cvc_number_hint
 string cvv_string
 string debit_credit_card_title_string
+string default_web_client_id
 string delete_string
 string dob
 string don_t_have_an_account
@@ -2265,13 +2268,19 @@ string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
 string facebook_app_id
 string fb_login_protocol_scheme
+string firebase_database_url
 string first_last_name_text
 string forgot_your_password
 string forgot_your_password_txt
 string from_gallery_string
 string full_name
 string full_name_string
+string gcm_defaultSenderId
 string get_our_thrilling_tip_sheets_string
+string google_api_key
+string google_app_id
+string google_crash_reporting_api_key
+string google_storage_bucket
 string guest_pass_string
 string gulfstream_park_string
 string hello_blank_fragment
@@ -2320,6 +2329,7 @@ string pay_string
 string payment_method_add_new_card
 string price_free
 string pricing_title_string
+string project_id
 string promocode
 string race_4_dummy
 string recent_result

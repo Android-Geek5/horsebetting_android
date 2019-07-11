@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "495990264763",
+    "firebase_url": "https://thrilling-picks.firebaseio.com",
+    "project_id": "thrilling-picks",
+    "storage_bucket": "thrilling-picks.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:495990264763:android:35026f7f577addce",
+        "android_client_info": {
+          "package_name": "com.thrillingpicks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "495990264763-0atmn0sqmbjcgq0jodd9257i7fgojbhm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.thrillingpicks",
+            "certificate_hash": "8fed17975a9e0ed0c61642c9478f28404f4ae04f"
+          }
+        },
+        {
+          "client_id": "495990264763-nfagsbsgbdjvrl0fof7fviab3knn6i2t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAzJmLcVPxP9A78xstQab6M0pQBXPu82Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "495990264763-nfagsbsgbdjvrl0fof7fviab3knn6i2t.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "495990264763-qicu1af082emegtfpeoq7fflqddauf2r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.developer.ThrillingPicks"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

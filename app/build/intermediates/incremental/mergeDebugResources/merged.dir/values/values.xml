@@ -683,6 +683,7 @@
     <item name="action_bar_spinner" type="id"/>
     <item name="action_menu_divider" type="id"/>
     <item name="action_menu_presenter" type="id"/>
+    <item name="crash_reporting_present" type="id"/>
     <item name="ghost_view" type="id"/>
     <item name="glide_custom_view_target_tag" type="id"/>
     <item name="home" type="id"/>
@@ -864,6 +865,7 @@
     <string name="character_counter_content_description">Character limit exceeded %1$d of %2$d</string>
     <string name="character_counter_pattern" translatable="false">%1$d / %2$d</string>
     <string name="choose_your_plan_string">Choose Your Plan</string>
+    <string name="com.crashlytics.android.build_id" ns2:ignore="UnusedResources,TypographyDashes" translatable="false">8b10b317-cfb7-41ac-b820-41c5b75c7c0c</string>
     <string name="com_facebook_device_auth_instructions">Visit &lt;b>facebook.com/device&lt;/b> and enter the code shown above.</string>
     <string name="com_facebook_image_download_unknown_error">Unexpected error while downloading an image.</string>
     <string name="com_facebook_internet_permission_error_message">WebView login requires INTERNET permission</string>
@@ -913,6 +915,7 @@
     <string name="cvc_number_hint">CVC</string>
     <string name="cvv_string">CVV</string>
     <string name="debit_credit_card_title_string">Debit/Credit Card</string>
+    <string name="default_web_client_id" translatable="false">495990264763-nfagsbsgbdjvrl0fof7fviab3knn6i2t.apps.googleusercontent.com</string>
     <string name="delete_string">Delete</string>
     <string name="dob">Date Of Birth</string>
     <string name="don_t_have_an_account">Don\'t have an account</string>
@@ -954,13 +957,19 @@
     <string name="fab_transformation_sheet_behavior" translatable="false">android.support.design.transformation.FabTransformationSheetBehavior</string>
     <string name="facebook_app_id">677282862702400</string>
     <string name="fb_login_protocol_scheme">fb677282862702400</string>
+    <string name="firebase_database_url" translatable="false">https://thrilling-picks.firebaseio.com</string>
     <string name="first_last_name_text"><![CDATA[First & Last Name]]></string>
     <string name="forgot_your_password">Forgot your password?</string>
     <string name="forgot_your_password_txt">Forgot Your Password</string>
     <string name="from_gallery_string">From Gallery</string>
     <string name="full_name">Full Name</string>
     <string name="full_name_string">Full Name</string>
+    <string name="gcm_defaultSenderId" translatable="false">495990264763</string>
     <string name="get_our_thrilling_tip_sheets_string">Get Our Thrilling Tip Sheets</string>
+    <string name="google_api_key" translatable="false">AIzaSyDAzJmLcVPxP9A78xstQab6M0pQBXPu82Y</string>
+    <string name="google_app_id" translatable="false">1:495990264763:android:35026f7f577addce</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDAzJmLcVPxP9A78xstQab6M0pQBXPu82Y</string>
+    <string name="google_storage_bucket" translatable="false">thrilling-picks.appspot.com</string>
     <string name="guest_pass_string">Guest Pass</string>
     <string name="gulfstream_park_string">Gulfstream Park</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -1010,6 +1019,7 @@
     <string name="payment_method_add_new_card">Add new card…</string>
     <string name="price_free">Free</string>
     <string name="pricing_title_string">Pricing</string>
+    <string name="project_id" translatable="false">thrilling-picks</string>
     <string name="promocode">Referral Code</string>
     <string name="race_4_dummy">Race #4 :</string>
     <string name="recent_result">Recent Result\u0020:</string>
