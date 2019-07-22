@@ -191,7 +191,6 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
                         e.printStackTrace();
                     }
                 }
-
                 @Override
                 public void onFailure(Call<JsonObject> call, Throwable t) {
                     pDialog.dismiss();
@@ -205,6 +204,5 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
             Log.e(TAG, "ForgotPasswordApi---error" + ex);
             ex.printStackTrace();
         }
-
     }
 }

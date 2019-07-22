@@ -11,31 +11,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.thrillingpicks.R;
 import com.thrillingpicks.interfaces.TrackItemOnclick;
 import com.thrillingpicks.utils.CommonUtils;
-import com.thrillingpicks.utils.ThrillingPicksPrefrences;
 import com.thrillingpicks.views.activities.DetailActivity;
 import com.thrillingpicks.views.activities.home.HomeNavigationActivity;
 import com.thrillingpicks.views.adapters.TomorrowAdapter;
-
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-
-import static com.thrillingpicks.utils.CommonUtils.isNullOrEmpty;
-import static com.thrillingpicks.views.activities.home.HomeNavigationActivity.todayTracklist;
-import static com.thrillingpicks.views.activities.home.HomeNavigationActivity.tomorrowTracklist;
 
 public class TomorrowFragment extends Fragment {
     View myview;
     RecyclerView tomorrow_recyler;
     LinearLayoutManager tomorrow_manager;
     TomorrowAdapter todayAdapter;
-    ArrayList<String> placelist;
-    ArrayList<String> tracklist;
     String TAG = TomorrowFragment.class.getSimpleName();
 
     @Nullable
@@ -64,46 +52,18 @@ public class TomorrowFragment extends Fragment {
                 todayAdapter = new TomorrowAdapter(getActivity(), HomeNavigationActivity.tomorrowTracklist, new TrackItemOnclick() {
                     @Override
                     public void onItemClick(View view, int position,String userType) {
-//                        if (userType.equals("yes")) {
                         String date=CommonUtils.getTomorrowDate();
                             Intent intent = new Intent(getActivity(), DetailActivity.class);
                             intent.putExtra("place", HomeNavigationActivity.tomorrowTracklist.get(position).getTrackName());
                             intent.putExtra("Id", String.valueOf(HomeNavigationActivity.tomorrowTracklist.get(position).getId()));
                             intent.putExtra("date", date);
                             getActivity().startActivity(intent);
-//                        }else {
-//                            Toast.makeText(getActivity(), "You Are a Guest User", Toast.LENGTH_SHORT).show();
-//                        }
                     }
                 });
                 tomorrow_recyler.setAdapter(todayAdapter);
 
         }catch (Exception e){
             e.printStackTrace();
-        }
-    }
-
-    public String checkUserType() {
-        String user_Subscription_End_Date = null;
-        String data = ThrillingPicksPrefrences.getUserPreferences(getActivity(), CommonUtils.USER);
-        try {
-            JSONObject json = new JSONObject(data);
-            Log.e(TAG, "SharedPreferenceData---" + json);
-            if(json.optString("user_subscription_end_date").equals("")){
-                Log.e(TAG, "user_subscription_end_date---null" );
-            }else {
-                user_Subscription_End_Date = json.getString("user_subscription_end_date");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        if (isNullOrEmpty(user_Subscription_End_Date)) {
-            Log.e(TAG, "check end date:--null");
-            return "Guest";
-        } else {
-            Log.e(TAG, "check end date:--" + user_Subscription_End_Date);
-            return "Paid";
         }
     }
 }

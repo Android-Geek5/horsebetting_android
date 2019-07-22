@@ -66,8 +66,8 @@ public class LoginTypeActivity extends AppCompatActivity implements View.OnClick
         pDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         pDialog.setContentView(R.layout.custom_progress_dialog);
         pDialog.setCancelable(false);
-        guestUser = (LinearLayout) findViewById(R.id.guest_user);
-        loginUser = (LinearLayout) findViewById(R.id.login_user);
+        guestUser =  findViewById(R.id.guest_user);
+        loginUser =  findViewById(R.id.login_user);
         login_type_app_name =  findViewById(R.id.login_type_app_name);
         recent_result_recyler =  findViewById(R.id.recent_result_recyler);
         recentResultManager=new LinearLayoutManager(this);
@@ -99,32 +99,11 @@ public class LoginTypeActivity extends AppCompatActivity implements View.OnClick
                 finish();
                 break;
             case R.id.login_user:
-//                LoginManager.getInstance().logOut();
-                disconnectFromFacebook();
+                LoginManager.getInstance().logOut();
                 //go to login screen
                 startActivity(new Intent(this, LoginActivity.class));
                 finish();
                 break;
-        }
-    }
-    /*logout form facebook */
-    public void disconnectFromFacebook() {
-        try {
-            if (AccessToken.getCurrentAccessToken() == null) {
-                return;        // already logged out
-            }
-            new GraphRequest(AccessToken.getCurrentAccessToken(), "/me/permissions/", null, HttpMethod.DELETE,
-                    new GraphRequest
-                            .Callback() {
-                        @Override
-                        public void onCompleted(GraphResponse graphResponse) {
-
-                            LoginManager.getInstance().logOut();
-
-                        }
-                    }).executeAsync();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
     /*hit get Result api*/

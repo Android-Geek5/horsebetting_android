@@ -4,7 +4,17 @@
             "outputFile": "C:\\Users\\android_dev\\Documents\\Sahil_Android_project\\horsebetting_android\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-land\\values-land.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\android_dev\\.gradle\\caches\\transforms-2\\files-2.1\\28f7b7911c4ae86fbdda68ac5287850b\\res\\values-land\\values-land.xml",
+                    "source": "C:\\Users\\android_dev\\.gradle\\caches\\transforms-2\\files-2.1\\088ed958d3b2d450d04c0629d353ef65\\res\\values-land\\values-land.xml",
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,125,196",
+                        "endColumns": "69,70,67",
+                        "endOffsets": "120,191,259"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\android_dev\\.gradle\\caches\\transforms-2\\files-2.1\\8a98563b9c37960ab7852f5a70a9209d\\res\\values-land\\values-land.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -20,16 +30,6 @@
                         "endLines": "8",
                         "endColumns": "10",
                         "endOffsets": "431"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\android_dev\\.gradle\\caches\\transforms-2\\files-2.1\\e8058bda364555e2d92c48443168dc26\\res\\values-land\\values-land.xml",
-                    "from": {
-                        "startLines": "2,3,4",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "55,125,196",
-                        "endColumns": "69,70,67",
-                        "endOffsets": "120,191,259"
                     }
                 }
             ]

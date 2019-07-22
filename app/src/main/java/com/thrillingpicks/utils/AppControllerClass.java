@@ -22,7 +22,6 @@ public class AppControllerClass extends Application{
    public void onCreate() {
 	  super.onCreate();
 	  FirebaseApp.initializeApp(getApplicationContext());
-//	  Fabric.with(this, new Crashlytics());
 	  Fabric fabric=new Fabric.Builder(this).kits(new Crashlytics()).
 		 debuggable(BuildConfig.DEBUG) // Enables Crashlytics debugger
 		 .build();

@@ -141,7 +141,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 onBackPressed();
                 break;
             case R.id.signup_tv_login:
-//                disconnectFromFacebook();
                 LoginManager.getInstance().logOut();
                 //go to login screen
                 startActivity(new Intent(this, LoginActivity.class));
@@ -159,27 +158,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 //hide keyboard on out side cick
                 hideKeyboard();
                 break;
-        }
-    }
-
-    /*logout form facebook */
-    public void disconnectFromFacebook() {
-        try {
-            if (AccessToken.getCurrentAccessToken() == null) {
-                return;        // already logged out
-            }
-            new GraphRequest(AccessToken.getCurrentAccessToken(), "/me/permissions/", null, HttpMethod.DELETE,
-                    new GraphRequest
-                            .Callback() {
-                        @Override
-                        public void onCompleted(GraphResponse graphResponse) {
-
-                            LoginManager.getInstance().logOut();
-
-                        }
-                    }).executeAsync();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
@@ -268,7 +246,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             alert.setCancelable(false);
             datePicker = (DatePicker) datepickerView.findViewById(R.id.datepicker);
             //set date picker maximum select date
-//            datePicker.setMaxDate(new Date().getTime());
             try {
                 datePicker.updateDate(yy, mmm, dd);
             } catch (Exception e) {
@@ -279,7 +256,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             alert.setNegativeButton(getString(R.string.cancel_string), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-//                    signUpEtDob.setText("");
                 }
             });
             //positive button

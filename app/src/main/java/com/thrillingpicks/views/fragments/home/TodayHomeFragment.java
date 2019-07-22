@@ -37,7 +37,6 @@ public class TodayHomeFragment extends Fragment {
     TodayAdapter todayAdapter;
     ArrayList<String> placelist;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -65,17 +64,14 @@ public class TodayHomeFragment extends Fragment {
                 todayAdapter = new TodayAdapter(getActivity(), HomeNavigationActivity.todayTracklist, new TrackItemOnclick() {
                     @Override
                     public void onItemClick(View view, int position,String userType) {
-//                        if (userType.equals("yes")) {
                         String date=CommonUtils.getTodayDate();
                         Log.e(TAG,"check today date");
+                        //go to detail screen
                             Intent intent = new Intent(getActivity(), DetailActivity.class);
                             intent.putExtra("place", HomeNavigationActivity.todayTracklist.get(position).getTrackName());
                             intent.putExtra("Id", String.valueOf(HomeNavigationActivity.todayTracklist.get(position).getId()));
                             intent.putExtra("date", date);
                             startActivity(intent);
-//                        }else {
-//                            Toast.makeText(getActivity(), "You Are Guest User", Toast.LENGTH_SHORT).show();
-//                        }
                     }
                 });
                 //set adapter in recylerview
@@ -86,28 +82,4 @@ public class TodayHomeFragment extends Fragment {
         }
     }
 
-    public String checkUserType() {
-        String user_Subscription_End_Date = null;
-        String data = ThrillingPicksPrefrences.getUserPreferences(getActivity(), CommonUtils.USER);
-        try {
-            JSONObject json = new JSONObject(data);
-            Log.e(TAG, "SharedPreferenceData---" + json);
-            if (json.optString("user_subscription_end_date").equals("")) {
-                Log.e(TAG, "user_subscription_end_date---null");
-            } else {
-                user_Subscription_End_Date = json.getString("user_subscription_end_date");
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        if (isNullOrEmpty(user_Subscription_End_Date)) {
-            Log.e(TAG, "check end date:--null");
-            return "Guest";
-        } else {
-            Log.e(TAG, "check end date:--" + user_Subscription_End_Date);
-            return "Paid";
-        }
-    }
 }

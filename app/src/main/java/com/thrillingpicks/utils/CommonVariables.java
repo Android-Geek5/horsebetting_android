@@ -20,7 +20,6 @@ public class CommonVariables {
     public  static  String SUBSCRIPTION_END_DATE="";
     public  static  String SUBSCRIPTION_PRICE="";
     public  static  String REFERTOAMOUNT="";
-//    public static List<SigninBeen.Data.CodesArray> CODEARRAY;
     public static JSONArray CODEARRAY;
 
 }

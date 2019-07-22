@@ -1,7 +1,6 @@
 package com.thrillingpicks.views.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
@@ -13,18 +12,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.thrillingpicks.R;
 import com.thrillingpicks.interfaces.PricingOnClick;
 import com.thrillingpicks.model.SubscriptionsBeen;
 import com.thrillingpicks.utils.CommonUtils;
-import com.thrillingpicks.views.activities.AddNewCardActivity;
-import com.thrillingpicks.views.activities.PricingActivity;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.thrillingpicks.views.activities.PricingActivity.selectedPosition;
@@ -62,7 +57,6 @@ public class PricingAdapter extends RecyclerView.Adapter<PricingAdapter.Myholder
                 myholder.subscription_interval_tv.setVisibility(View.GONE);
             } else {
                 if (priceList.get(i).getSubscriptionValidity() == 0) {
-//                    myholder.subscription_interval_tv.setText(priceList.get(i).getSubscriptionInterval());
                     myholder.subscription_interval_tv.setVisibility(View.GONE);
                 } else {
                     myholder.subscription_interval_tv.setVisibility(View.VISIBLE);
@@ -100,6 +94,7 @@ public class PricingAdapter extends RecyclerView.Adapter<PricingAdapter.Myholder
             bgShape.setColor(context.getResources().getColor(R.color.loginButtonBg));
         }
 
+        //impelment on click listener on item
         myholder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,10 +120,10 @@ public class PricingAdapter extends RecyclerView.Adapter<PricingAdapter.Myholder
         public Myholder(@NonNull View itemView) {
             super(itemView);
             //initialize views
-            validTv = (TextView) itemView.findViewById(R.id.valid_tv);
-            descTv = (TextView) itemView.findViewById(R.id.desc_tv);
-            planPrice = (TextView) itemView.findViewById(R.id.plan_price);
-            subscription_interval_tv = (TextView) itemView.findViewById(R.id.subscription_interval_tv);
+            validTv =  itemView.findViewById(R.id.valid_tv);
+            descTv =  itemView.findViewById(R.id.desc_tv);
+            planPrice =  itemView.findViewById(R.id.plan_price);
+            subscription_interval_tv =  itemView.findViewById(R.id.subscription_interval_tv);
             pricing_item_ll = itemView.findViewById(R.id.pricing_item_ll);
 
         }

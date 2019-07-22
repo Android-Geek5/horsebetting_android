@@ -214,7 +214,6 @@ public class HomeNavigationActivity extends AppCompatActivity
                                 setProfileData();
                                 //hit get picks api
                                 getPicksApi(CommonVariables.TOKEN);
-
                             } else {
                                 //show message in toast
                                 Toast.makeText(HomeNavigationActivity.this, getString(R.string.no_internet_string), Toast.LENGTH_SHORT).show();
@@ -248,7 +247,6 @@ public class HomeNavigationActivity extends AppCompatActivity
                         e.printStackTrace();
                     }
                 }
-
                 @Override
                 public void onFailure(Call<SessionBeen> call, Throwable t) {
                     pDialog.dismiss();
@@ -260,71 +258,6 @@ public class HomeNavigationActivity extends AppCompatActivity
             pDialog.dismiss();
             Log.e(TAG, "error" + ex);
         }
-    }
-
-
-    /*hit track api*/
-    public void TracksApi(String token) {
-        Call<TracksBeen> tracksBeenCall;
-        Log.e(TAG, "TracksApi---" + token + "---" + CommonVariables.AUTHORIZATIONKEY);
-        try {
-            tracksBeenCall = ApiClient.getClient().create(ApiInterface.class)
-                    .tracks(CommonVariables.AUTHORIZATIONKEY, token);
-            tracksBeenCall.enqueue(new Callback<TracksBeen>() {
-                @Override
-                public void onResponse(Call<TracksBeen> call, Response<TracksBeen> response) {
-                    try {
-                        //check code is equal to 1
-                        if (response.body().getCode().equals("1")) {
-                            //initialize arraylist
-                            todayTracklist = new ArrayList<>();
-                            tomorrowTracklist = new ArrayList<>();
-                            Log.e(TAG, "TracksApi--response--tomorrowTracklist-" + new Gson().toJson(response.body().getData()));
-                            //assign data to arraylist
-                            tomorrowTracklist = response.body().getData().getTomorrow();
-                            todayTracklist = response.body().getData().getToday();
-                            Log.e(TAG, "TracksApi--response--tomorrowTracklist-" + tomorrowTracklist.size());
-
-                        }
-                        //cehck code is equal to 0
-                        else if (response.body().getCode().equals("0")) {
-                            Log.e(TAG, "TracksApi--response-0--" + new Gson().toJson(response.body().getData()));
-                            Toast.makeText(HomeNavigationActivity.this, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                        //check code is equal to -1
-                        else if (response.body().getCode().equals("-1")) {
-                            Log.e(TAG, "TracksApi--response--1--" + new Gson().toJson(response.body().getData()));
-                            //clear local data base
-                            ThrillingPicksPrefrences.clearAllData("TPData", HomeNavigationActivity.this);
-                            //show session expire message in toast
-                            Toast.makeText(HomeNavigationActivity.this, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                            //go to login activity
-                            Intent intent = new Intent(HomeNavigationActivity.this, LoginActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(intent);
-                            finish();
-                        }
-                        pDialog.dismiss();
-
-                    } catch (Exception e) {
-                        Log.e(TAG, "TracksApi--Exception", e);
-                        e.printStackTrace();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<TracksBeen> call, Throwable t) {
-                    pDialog.dismiss();
-                    Log.e(TAG, "TracksApi-On failure" + t);
-                    t.printStackTrace();
-                }
-            });
-        } catch (Exception ex) {
-            pDialog.dismiss();
-            Log.e(TAG, "error" + ex);
-            ex.printStackTrace();
-        }
-
     }
 
     /*add data navigation list*/
@@ -340,8 +273,6 @@ public class HomeNavigationActivity extends AppCompatActivity
     private void setProfileData() {
         try {
             navigation_user_email_tv.setText("" + CommonVariables.NAME);
-//            navigation_user_name_tv.setText();
-
             RequestOptions options = new RequestOptions()
                     .centerCrop()
                     .placeholder(R.drawable.img_horse)
@@ -379,8 +310,8 @@ public class HomeNavigationActivity extends AppCompatActivity
         accoun_items_recyler.setLayoutManager(accountManager);
         accountAdapter = new AccountAdapter(this, accountItemList, new AccountItemOnclick() {
             @Override
-            public void itemClick(View v, int postion) {
-                switch (postion) {
+            public void itemClick(View v, int position) {
+                switch (position) {
                     case 0:
                         if (drawer.isDrawerOpen(GravityCompat.START)) {
                             drawer.closeDrawer(GravityCompat.START);
@@ -519,14 +450,6 @@ public class HomeNavigationActivity extends AppCompatActivity
                 }
                 break;
             case R.id.invite_friends_tv:
-//                if (drawer.isDrawerOpen(GravityCompat.START)) {
-//                    drawer.closeDrawer(GravityCompat.START);
-//                } else {
-//                    drawer.openDrawer(GravityCompat.START);
-//                }
-//
-
-
                 startActivity(new Intent(HomeNavigationActivity.this, InviteFriendsActivity.class));
                 break;
             case R.id.cards_tv:
@@ -642,11 +565,6 @@ public class HomeNavigationActivity extends AppCompatActivity
                             menuRecylerAdapter = new MenuRecylerAdapter(HomeNavigationActivity.this, recentWinsList, new MenuRecylerOnClick() {
                                 @Override
                                 public void itemClick(View v, int position) {
-//                                    if (drawer.isDrawerOpen(GravityCompat.START)) {
-//                                        drawer.closeDrawer(GravityCompat.START);
-//                                    } else {
-//                                        drawer.openDrawer(GravityCompat.START);
-//                                    }
                                 }
                             });
                             menu_recyler.setAdapter(menuRecylerAdapter);
@@ -689,8 +607,6 @@ public class HomeNavigationActivity extends AppCompatActivity
                         //show message in toast
                         Toast.makeText(HomeNavigationActivity.this, getString(R.string.no_internet_string), Toast.LENGTH_SHORT).show();
                     }
-
-
                 }
             });
         } catch (Exception ex) {
@@ -767,7 +683,7 @@ public class HomeNavigationActivity extends AppCompatActivity
         }
     }
 
-    /*face book sign out*/
+    /*facebook sign out*/
     public void disconnectFromFacebook() {
         try {
             if (AccessToken.getCurrentAccessToken() == null) {

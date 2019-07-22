@@ -32,7 +32,6 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.Myholder> {
     @Override
     public void onBindViewHolder(@NonNull final PlanAdapter.Myholder myholder, int i) {
    //set data in views
-
     }
 
     @Override

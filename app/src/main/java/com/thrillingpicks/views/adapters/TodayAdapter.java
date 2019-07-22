@@ -1,8 +1,6 @@
 package com.thrillingpicks.views.adapters;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
@@ -11,24 +9,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.thrillingpicks.R;
 import com.thrillingpicks.interfaces.TrackItemOnclick;
 import com.thrillingpicks.model.TracksBeen;
-import com.thrillingpicks.utils.CommonUtils;
-import com.thrillingpicks.utils.ThrillingPicksPrefrences;
-import com.thrillingpicks.views.activities.DetailActivity;
-import com.thrillingpicks.views.activities.signUpFlow.SplashActivity;
 
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 import java.util.List;
-
-import static com.thrillingpicks.utils.CommonUtils.isNullOrEmpty;
 
 public class TodayAdapter extends RecyclerView.Adapter<TodayAdapter.Myholder> {
     String TAG = TodayAdapter.class.getSimpleName();
@@ -63,18 +50,14 @@ public class TodayAdapter extends RecyclerView.Adapter<TodayAdapter.Myholder> {
             e.printStackTrace();
         }
         Log.e("TodayAdapter", "Id--" + tracklist.get(i).getId());
-
-
         //onclick listner
         myholder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onclick.onItemClick(v, i,tracklist.get(i).getTrackRaceIsGuestAvailable());
-
             }
         });
     }
-
 
     @Override
     public int getItemCount() {
@@ -84,7 +67,6 @@ public class TodayAdapter extends RecyclerView.Adapter<TodayAdapter.Myholder> {
             e.printStackTrace();
             return 0;
         }
-
     }
 
     public class Myholder extends RecyclerView.ViewHolder {

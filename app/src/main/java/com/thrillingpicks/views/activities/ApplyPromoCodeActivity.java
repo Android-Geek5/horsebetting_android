@@ -39,16 +39,16 @@ public class ApplyPromoCodeActivity extends AppCompatActivity implements View.On
 
     /*initialize views*/
     private void initView() {
-        promoBack = (LinearLayout) findViewById(R.id.promo_back);
-        addNewCardBack = (ImageView) findViewById(R.id.add_new_card_back);
-        rewardsTitleTv = (TextView) findViewById(R.id.rewards_title_tv);
-        rewardsRecyler = (RecyclerView) findViewById(R.id.rewards_recyler);
-        promoRl = (RelativeLayout) findViewById(R.id.promo_rl);
-        rewardsPriceTv = (TextView) findViewById(R.id.rewards_price_tv);
-        rewardsApplyTv = (TextView) findViewById(R.id.rewards_apply_tv);
-        //initialize clicable views
+        promoBack =  findViewById(R.id.promo_back);
+        addNewCardBack =  findViewById(R.id.add_new_card_back);
+        rewardsTitleTv =  findViewById(R.id.rewards_title_tv);
+        rewardsRecyler =  findViewById(R.id.rewards_recyler);
+        promoRl =  findViewById(R.id.promo_rl);
+        rewardsPriceTv =  findViewById(R.id.rewards_price_tv);
+        rewardsApplyTv =  findViewById(R.id.rewards_apply_tv);
+        //initialize clickable views
         clickView();
-        //set recycler
+        //set adapter in recyclerview
         setAdapter();
     }
 

@@ -53,7 +53,6 @@ public class ChangePaswordActivity extends AppCompatActivity implements View.OnC
     private Button changePasswordBtnSubmit;
     LinearLayout change_password_main;
 
-    GoogleApiClient mGoogleApiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,15 +64,14 @@ public class ChangePaswordActivity extends AppCompatActivity implements View.OnC
 
     /*initialize activity views*/
     private void initView() {
-        changePasswordBackIv = (ImageView) findViewById(R.id.change_password_back_iv);
-        oldPasswordEt = (EditText) findViewById(R.id.old_password_et);
-        newPasswordEt = (EditText) findViewById(R.id.new_password_et);
-        confirmPasswordEt = (EditText) findViewById(R.id.confirm_password_et);
-        changePasswordBtnSubmit = (Button) findViewById(R.id.change_password_btn_submit);
+        changePasswordBackIv =  findViewById(R.id.change_password_back_iv);
+        oldPasswordEt =  findViewById(R.id.old_password_et);
+        newPasswordEt =  findViewById(R.id.new_password_et);
+        confirmPasswordEt =  findViewById(R.id.confirm_password_et);
+        changePasswordBtnSubmit =  findViewById(R.id.change_password_btn_submit);
         change_password_main = findViewById(R.id.change_password_main);
         //call clickview method
         clickView();
-        googleLogin();
     }
 
     /*initialize clickable views*/
@@ -105,8 +103,6 @@ public class ChangePaswordActivity extends AppCompatActivity implements View.OnC
             String old_password = "", new_password = "", confirm_password = "";
             //check oldpassword not null
             if (CommonUtils.validateForNull(this, oldPasswordEt, getString(R.string.enter_old_password))) {
-                //check old password length greater then 6
-//                if (CommonUtils.validPassword(this, oldPasswordEt, getString(R.string.enter_valid_old_password))) {
                 old_password = CommonUtils.convertMD5(oldPasswordEt.getText().toString().trim());
                 Log.e(TAG, "password convert MD5:--" + old_password);
                 //check new password not null
@@ -132,7 +128,6 @@ public class ChangePaswordActivity extends AppCompatActivity implements View.OnC
                                         Toast.makeText(this, getString(R.string.no_internet_string), Toast.LENGTH_SHORT).show();
                                     }
                                 }
-//                                }
                             }
                         }
                     }
@@ -173,8 +168,6 @@ public class ChangePaswordActivity extends AppCompatActivity implements View.OnC
                         //check code equal to 1
                         if (jsonObject.getString("code").equals("1")) {
                             Log.e(TAG, "ChangePasswordApi--response--1-" + jsonObject);
-                            //disconnect google login
-                            googleSignOut();
                             //disconnect facebook login
                             disconnectFromFacebook();
                             //show alert message in toast
@@ -239,38 +232,6 @@ public class ChangePaswordActivity extends AppCompatActivity implements View.OnC
                 view2 = new View(this);
             }
             imm1.hideSoftInputFromWindow(view2.getWindowToken(), 0);     //hide keyboard
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /*-----google login----*/
-    private void googleLogin() {
-        try {
-
-            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                    .requestEmail()
-                    .build();
-
-            mGoogleApiClient = new GoogleApiClient.Builder(this)
-                    .enableAutoManage(this, this)
-                    .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                    .build();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    /*google sign out*/
-    private void googleSignOut() {
-        try {
-            Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
-                    new ResultCallback<Status>() {
-                        @Override
-                        public void onResult(Status status) {
-
-                        }
-                    });
         } catch (Exception e) {
             e.printStackTrace();
         }

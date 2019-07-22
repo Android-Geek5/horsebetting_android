@@ -68,7 +68,6 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         detail_back_tv = findViewById(R.id.detail_back_tv);
         detail_title_tv = findViewById(R.id.detail_title_tv);
         race_date_tv = findViewById(R.id.race_date_tv);
-
         //initialize progress dialog
         pDialog = new Dialog(this, android.R.style.Theme_Translucent);
         pDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -252,7 +251,12 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         }
 
     }
-    public String checkUserType(){
+
+   /**
+	check user type
+	@return
+	*/
+   public String checkUserType(){
         String user_Subscription_End_Date="";
         String data = ThrillingPicksPrefrences.getUserPreferences(DetailActivity.this, CommonUtils.USER);
         try {

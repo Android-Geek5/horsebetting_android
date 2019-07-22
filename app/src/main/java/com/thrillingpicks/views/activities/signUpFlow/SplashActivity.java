@@ -15,7 +15,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -47,6 +46,7 @@ import static com.thrillingpicks.utils.CommonUtils.compareDate;
 import static com.thrillingpicks.utils.CommonUtils.isNullOrEmpty;
 
 public class SplashActivity extends AppCompatActivity {
+    //declare variables
     String TAG = SplashActivity.class.getSimpleName();
     /*Timer declaration for Splash Screen*/
     private long SPLASH_TIME_OUT = 1500;
@@ -54,7 +54,6 @@ public class SplashActivity extends AppCompatActivity {
     TextView app_name;
     Dialog pDialog;
     Snackbar snackbar;
-    String encdate = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +70,10 @@ public class SplashActivity extends AppCompatActivity {
         Typeface Nebulous_content = Typeface.createFromAsset(getAssets(), "NebulousContent.otf");
         app_name.setTypeface(Nebulous_content, Typeface.ITALIC);
         HomeFragment.selectedPostion = 0;
+        //get hash key
         getAppKeyHash();
         /*
-         *update common feilds
+         *update common fields
          * @ID,@Token,@User name ,@Email,@Profile image,@Dob
          * */
         ThrillingPicksPrefrences.updateCommonData(SplashActivity.this);
@@ -82,7 +82,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
 
-    /*nextActivity() Method Definition*/
+    /*go next Activity */
     private void nextActivity() {
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -117,7 +117,10 @@ public class SplashActivity extends AppCompatActivity {
         }, SPLASH_TIME_OUT);
     }
 
-    /*hit session api*/
+    /**
+     hit session api
+     @param token
+     */
     public void sessionApi(String token) {
         Call<SessionBeen> sessionBeenCall;
         Log.e(TAG, "SessionApi---" + token + "---" + CommonVariables.AUTHORIZATIONKEY);
@@ -231,7 +234,7 @@ public class SplashActivity extends AppCompatActivity {
         }
 
     }
-
+    /*get key hash*/
     private void getAppKeyHash() {
         try {
             PackageInfo info = getPackageManager().getPackageInfo(
@@ -279,9 +282,8 @@ public class SplashActivity extends AppCompatActivity {
 
             //set authorization key in common valiable
             CommonVariables.AUTHORIZATIONKEY = hashtext;
-
-
         }
+
         // For specifying wrong message digest algorithms
         catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
@@ -301,11 +303,9 @@ public class SplashActivity extends AppCompatActivity {
             try {
                 // Static getInstance method is called with hashing MD5
                 MessageDigest md = MessageDigest.getInstance("MD5");
-
                 // digest() method is called to calculate message digest
                 //  of an input digest() return array of byte
                 byte[] messageDigest = md.digest(currentdate.getBytes());
-
                 // Convert byte array into signum representation
                 BigInteger no = new BigInteger(1, messageDigest);
 
@@ -327,7 +327,6 @@ public class SplashActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
 }

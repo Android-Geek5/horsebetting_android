@@ -2,9 +2,8 @@ package com.thrillingpicks.views.activities;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
@@ -17,7 +16,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.stripe.android.Stripe;
 import com.stripe.android.TokenCallback;
@@ -28,18 +26,11 @@ import com.stripe.android.view.CardNumberEditText;
 import com.stripe.android.view.ExpiryDateEditText;
 import com.stripe.android.view.StripeEditText;
 import com.thrillingpicks.R;
-
-import com.thrillingpicks.model.SessionBeen;
 import com.thrillingpicks.retrofit.ApiClient;
 import com.thrillingpicks.retrofit.ApiInterface;
 import com.thrillingpicks.utils.CommonUtils;
 import com.thrillingpicks.utils.CommonVariables;
-import com.thrillingpicks.utils.ThrillingPicksPrefrences;
-import com.thrillingpicks.views.activities.home.HomeNavigationActivity;
-import com.thrillingpicks.views.activities.signUpFlow.LoginTypeActivity;
-import com.thrillingpicks.views.activities.signUpFlow.SplashActivity;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import retrofit2.Call;
@@ -49,7 +40,6 @@ import retrofit2.Response;
 public class AddNewCardActivity extends AppCompatActivity implements View.OnClickListener {
     String TAG = AddNewCardActivity.class.getSimpleName();
       private static final String PUBLISHABLE_KEY = "pk_live_xFfIYb7MKishcUMq5Nej632b00MCFbAFdK";   // using publish key for stripe account pk_test_j1x6N6NRcxR8AolRflTBjQnp00Q58NjWYa
-//    private static final String PUBLISHABLE_KEY = "pk_test_j1x6N6NRcxR8AolRflTBjQnp00Q58NjWYa";
     ImageView add_new_card_back;
     TextView delete_card_tv, save_card_tv;
     EditText account_holder_name;
@@ -61,11 +51,9 @@ public class AddNewCardActivity extends AppCompatActivity implements View.OnClic
     CheckBox quick_pay_chckbox;
     String save_card = "";
     LinearLayout quick_pay_ll;
-    String Subscription_id = "";
     String cardID;
     String card_number = "", exp_year = "", expMonth = "", user_name = "";
     int exp_month = 0;
-    String PromoId = "";
     LinearLayout add_new_card_main_ll;
     TextView detail_title_tv;
 
@@ -88,7 +76,7 @@ public class AddNewCardActivity extends AppCompatActivity implements View.OnClic
         add_new_card_main_ll = findViewById(R.id.add_new_card_main_ll);
         detail_title_tv = findViewById(R.id.detail_title_tv);
 
-        mCardInputWidget = (CardMultilineWidget) findViewById(R.id.card_multiline_widget);
+        mCardInputWidget =  findViewById(R.id.card_multiline_widget);
         mCardNumberEditText = findViewById(com.stripe.android.R.id.et_add_source_card_number_ml);
         mPostalCodeEditText = findViewById(com.stripe.android.R.id.et_add_source_postal_ml);
         mExpiryDateEditText = findViewById(com.stripe.android.R.id.et_add_source_expiry_ml);
@@ -106,7 +94,6 @@ public class AddNewCardActivity extends AppCompatActivity implements View.OnClic
     }
 
     /*get initent data
-     *
      * subscription id,card id,car number,exp month,exp year,
      * user name
      *
@@ -120,16 +107,6 @@ public class AddNewCardActivity extends AppCompatActivity implements View.OnClic
                 if (getIntent().getStringExtra("activity").equals("1")) {
                     save_card_tv.setText("Add");
                     quick_pay_ll.setVisibility(View.GONE);
-                   /* Subscription_id = getIntent().getStringExtra("Subscription_id");
-                    quick_pay_ll.setVisibility(View.VISIBLE);
-                    if (CommonUtils.isNullOrEmpty(getIntent().getStringExtra("PromoId"))) {
-                        Log.e(TAG, "check promo---null");
-                        PromoId = "";
-                    } else {
-                        PromoId = getIntent().getStringExtra("PromoId");
-                        Log.e(TAG, "check promo---" + PromoId);
-                    }*/
-
                 } else if (getIntent().getStringExtra("activity").equals("3")) {
                     quick_pay_ll.setVisibility(View.GONE);
                     cardID = getIntent().getStringExtra("cardID");
@@ -204,7 +181,6 @@ public class AddNewCardActivity extends AppCompatActivity implements View.OnClic
                     String month = String.valueOf(cardDate[0]);
                     String year = String.valueOf(cardDate[1]);
                     Log.e(TAG, "check month and year:--" + month + "--" + year);
-
                     //check account holder name null validation
                     if (CommonUtils.validateForNull(this, account_holder_name, getString(R.string.enter_name))) {
                         //check name pattren validation
@@ -307,19 +283,6 @@ public class AddNewCardActivity extends AppCompatActivity implements View.OnClic
 
                             try {
                                 Log.e(TAG, "" + getIntent().getStringExtra("activity"));
-                                //check intent not null
-//                                if (getIntent().getExtras() != null) {
-//                                    //check previous activity flow using activity variable
-//                                    if (getIntent().getStringExtra("activity").equals("1")) {
-//                                        //check internet connection
-//                                        if (CommonUtils.isConnectingToInternet(AddNewCardActivity.this)) {
-//                                            //hit make payment api to subscribe paln
-//                                            makePaymentApi(CommonVariables.TOKEN, save_card, token.getId(), Subscription_id, "", PromoId);
-//                                        } else {
-//                                            //show alert message in toast
-//                                            Toast.makeText(AddNewCardActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
-//                                        }
-//                                    } else {
                                 //check internet connection
                                 if (CommonUtils.isConnectingToInternet(AddNewCardActivity.this)) {
                                     //hit api to add new card
@@ -328,9 +291,6 @@ public class AddNewCardActivity extends AppCompatActivity implements View.OnClic
                                     //show alert message in toast
                                     Toast.makeText(AddNewCardActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
                                 }
-//                                    }
-//                                }
-
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
@@ -359,7 +319,12 @@ public class AddNewCardActivity extends AppCompatActivity implements View.OnClic
         finish();
     }
 
-    /*hit signin api*/
+
+    /**
+     hit add new card api
+     @param CardToken
+     @param UserToken
+     */
     public void addNewCard(String CardToken, String UserToken) {
         Call<JsonObject> signinBeenCall;
         Log.e(TAG, "addNewCard---" + CardToken + "--" + UserToken + "---" + CommonVariables.AUTHORIZATIONKEY);
@@ -376,21 +341,7 @@ public class AddNewCardActivity extends AppCompatActivity implements View.OnClic
                             Log.e(TAG, "addNewCard---response-1--" + jsonObject.getString("message"));
                             //show alert message in toast
                             Toast.makeText(AddNewCardActivity.this, "" + jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
-//                            //check intent not null
-//                            if (getIntent().getExtras() != null) {
-//                                //get previous activity data and check it
-//                                if (getIntent().getStringExtra("activity").equals("1")) {
-//                                    //  go to login activity
-//                                    Intent intent = new Intent(AddNewCardActivity.this, HomeNavigationActivity.class);
-//                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                                    startActivity(intent);
                             finish();
-//                                } else {
-//                                    // back press functionality
-//                                    onBackPressed();
-//                                }
-//                            }
-
                         }
                         //check code is equal to 0
                         else if (jsonObject.getString("code").equals("0")) {
@@ -431,97 +382,17 @@ public class AddNewCardActivity extends AppCompatActivity implements View.OnClic
 
     }
 
-    /*hit make Payment api*/
-    public void makePaymentApi(String token, String save_card, String stripe_token, String subscription_id, String card_id, String code_id) {
-        //initialize progress dialog
-//        final Dialog pDialog = new Dialog(this, android.R.style.Theme_Translucent);
-//        pDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        pDialog.setContentView(R.layout.custom_progress_dialog);
-//        pDialog.setCancelable(false);
-        //show progress dialog
-        if (pDialog.isShowing()) {
 
-        } else {
-            pDialog.show();
-        }
-//        pDialog.show();
-        Call<JsonObject> signinBeenCall;
-        Log.e(TAG, "makePaymentApi---" + token + "--" + save_card + "---" + stripe_token + "---" + subscription_id + "---" + card_id + "---" + CommonVariables.AUTHORIZATIONKEY);
-        Log.e(TAG, "code_id---" + code_id);
-        try {
-            signinBeenCall = ApiClient.getClient().create(ApiInterface.class)
-                    .makePayment(CommonVariables.AUTHORIZATIONKEY, token, save_card, stripe_token, subscription_id, card_id, code_id);
-            signinBeenCall.enqueue(new Callback<JsonObject>() {
-                @Override
-                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                    try {
-                        Log.e(TAG, "check response---" + response.body());
-                        JSONObject jsonObject = new JSONObject(response.body().toString());
-                        Log.e(TAG, "fdfdmfdk" + jsonObject);
-                        //check code is equal to 1
-                        if (jsonObject.getString("code").equals("1")) {
-                            //show sucess alert message in toast
-                            Toast.makeText(AddNewCardActivity.this, "" + jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
-                            if (getIntent().getExtras() != null) {
-                               /* if (getIntent().getStringExtra("activity").equals("3")) {
-
-                                } else {
-                                    //go to home screen
-                                    Intent intent = new Intent(AddNewCardActivity.this, HomeNavigationActivity.class);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    startActivity(intent);
-                                    finish();
-                                }*/
-                                finish();
-                            }
-
-
-                        }
-                        //check code equal to 0
-                        else if (jsonObject.getString("code").equals("0")) {
-                            Log.e(TAG, "makePaymentApi--response--0-" + response.body());
-                            //show alert message in toast
-                            Toast.makeText(AddNewCardActivity.this, "" + jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
-                        } else {
-                            Log.e(TAG, "makePaymentApi--response--111-" + response.body());
-                            //show alert message in toast
-                            Toast.makeText(AddNewCardActivity.this, "" + jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
-                            //dismiss progress dialog
-                            pDialog.dismiss();
-                        }
-                        //dismiss progress dialog
-                        pDialog.dismiss();
-
-                    } catch (Exception e) {
-                        Log.e(TAG, "makePaymentApi--Exception", e);
-                        e.printStackTrace();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<JsonObject> call, Throwable t) {
-                    pDialog.dismiss();
-                    Log.e(TAG, "makePaymentApi--On failure" + t);
-                    t.printStackTrace();
-                }
-            });
-        } catch (Exception ex) {
-            Log.e(TAG, "error" + ex);
-            ex.printStackTrace();
-        }
-
-    }
-
-    /*edit card api hit*/
+    /**
+     edit card api hit
+     @param Authorization
+     @param user_token
+     @param card_id
+     @param exp_month
+     @param exp_year
+     @param user_name
+     */
     public void editcardApi(String Authorization, String user_token, String card_id, String exp_month, String exp_year, String user_name) {
-        //initialize progress dialog
-//        final Dialog pDialog = new Dialog(this, android.R.style.Theme_Translucent);
-//        pDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        pDialog.setContentView(R.layout.custom_progress_dialog);
-//        pDialog.setCancelable(false);
-//        //show progress dialog
-//        pDialog.show();
-
         if (pDialog.isShowing()) {
 
         } else {
@@ -572,5 +443,4 @@ public class AddNewCardActivity extends AppCompatActivity implements View.OnClic
         }
 
     }
-
 }

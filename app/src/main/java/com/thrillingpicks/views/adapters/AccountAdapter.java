@@ -69,8 +69,6 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.Myholder
             super(itemView);
             //initialize views
             account_item = itemView.findViewById(R.id.account_item);
-
-
         }
     }
 }

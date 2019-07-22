@@ -42,6 +42,7 @@ public class ApplyPromoCodeAdapter extends RecyclerView.Adapter<ApplyPromoCodeAd
     public void onBindViewHolder(@NonNull final ApplyPromoCodeAdapter.Myholder myholder, final int i) {
         //set data in views
         Log.e("check_position_onclick", "" + selected + "--" + i);
+        //check prostion equal to i or not
         if (selected == i) {
             myholder.reward_select.setVisibility(View.VISIBLE);
             myholder.reward_unselect.setVisibility(View.GONE);
@@ -49,6 +50,8 @@ public class ApplyPromoCodeAdapter extends RecyclerView.Adapter<ApplyPromoCodeAd
             myholder.reward_unselect.setVisibility(View.VISIBLE);
             myholder.reward_select.setVisibility(View.GONE);
         }
+
+        //item click
         myholder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.login.LoginManager;
 import com.google.gson.Gson;
 import com.thrillingpicks.R;
 import com.thrillingpicks.interfaces.PricingOnClick;
@@ -270,26 +271,17 @@ public class PricingActivity extends AppCompatActivity implements View.OnClickLi
                         startActivity(intent);
                         finish();
                     } else {
-//                        if (GoTo.equals("cardlist")) {
-                            //go to card list screen
                             Intent intent = new Intent(PricingActivity.this, CardListActivity.class);
                             intent.putExtra("activity", "PricingActivity");
                             intent.putExtra("price", select_price);
                             intent.putExtra("Subscription_id", Subscription_id);
                             startActivity(intent);
-//                        } else {
-                            //go to add new card screen
-//                            Intent intent = new Intent(PricingActivity.this, AddNewCardActivity.class);
-//                            intent.putExtra("activity", "1");
-//                            intent.putExtra("Subscription_id", Subscription_id);
-//                            intent.putExtra("PromoId", "");
-//                            startActivity(intent);
-//                        }
                     }
                 }
                 break;
             case R.id.pricing_back_iv:
                 //back press functionality
+                LoginManager.getInstance().logOut();
                 onBackPressed();
                 break;
             case R.id.pricing_cancel_auto_renew_ll:

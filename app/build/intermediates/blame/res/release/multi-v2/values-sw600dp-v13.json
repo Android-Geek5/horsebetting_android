@@ -4,7 +4,7 @@
             "outputFile": "C:\\Users\\android_dev\\Documents\\Sahil_Android_project\\horsebetting_android\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-sw600dp-v13\\values-sw600dp-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\android_dev\\.gradle\\caches\\transforms-2\\files-2.1\\28f7b7911c4ae86fbdda68ac5287850b\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "source": "C:\\Users\\android_dev\\.gradle\\caches\\transforms-2\\files-2.1\\8a98563b9c37960ab7852f5a70a9209d\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,10,11,12",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\android_dev\\.gradle\\caches\\transforms-2\\files-2.1\\e8058bda364555e2d92c48443168dc26\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "source": "C:\\Users\\android_dev\\.gradle\\caches\\transforms-2\\files-2.1\\088ed958d3b2d450d04c0629d353ef65\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",

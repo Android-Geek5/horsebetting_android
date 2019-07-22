@@ -29,6 +29,7 @@ import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.HttpMethod;
+import com.facebook.login.Login;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.google.android.gms.auth.api.Auth;
@@ -84,8 +85,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
    String Email="", firstname="", lastname="", mediaId="", media="";
    Dialog pDialog;
    ImageView login_img_back;
-   private boolean fBLogInClicked=false;
-   private List<String> PERMISSIONS=Arrays.asList("public_profile", "email");
 
    @Override
    protected void onCreate(Bundle savedInstanceState){
@@ -178,14 +177,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 			Log.i("check_btn_click", "facebook click");
 			//check internet connection
 			if (CommonUtils.isConnectingToInternet(this)){
-			   if (fBLogInClicked){
 				  LoginManager.getInstance().logOut();
-//				  disconnectFromFacebook();
-				  facebookLogins();
-			   }else{
-				  fBLogInClicked=true;
-				  facebookLogins();
-			   }
+			   AccessToken.setCurrentAccessToken(null);
+				  facebookLogin();
 			}else{
 			   //show alert message in toast
 			   Toast.makeText(this, getString(R.string.no_internet_string), Toast.LENGTH_SHORT).show();
@@ -204,102 +198,76 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 	  }
    }
 
-   public void facebookLogins(){
-	  //initialize dialog
-	  final Dialog pDialog=new Dialog(LoginActivity.this, android.R.style.Theme_Translucent);
-	  pDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-	  //set layout for dialog
-	  pDialog.setContentView(R.layout.custom_progress_dialog);
-	  //set outside clickable false
-	  pDialog.setCancelable(false);
-	  LoginManager.getInstance().logInWithReadPermissions(this, PERMISSIONS);
-	  LoginManager.getInstance().registerCallback(callbackManager,
-												  new FacebookCallback<LoginResult>(){
-													 @Override
-													 public void onSuccess(LoginResult loginResult){
-														fBLogInClicked=true;
-														System.out.println("loginResult is "+loginResult);
-														loginResult.getAccessToken().getUserId();
-														Log.e("check_accesstoken", ""+loginResult.getAccessToken().getToken());
-														Log.e("check_currenttoken",
-															  ""+AccessToken.getCurrentAccessToken());
-														String mFacebookUserId=loginResult.getAccessToken().getUserId();
-														GraphRequest request=GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(),
-																									   new GraphRequest.GraphJSONObjectCallback(){
-																										  @Override
-																										  public void onCompleted(
-																											 JSONObject object,
-																											 GraphResponse response){
-																											 System.out.println("object is "+object);
-																											 try{
-																												Log.e("rrrrrr====", ""+response);
-																												try{
-																												if (object.has("name")){
-																												   String str=object.getString("name");
-																												   String[] parts=str.split(" ");
-																												   String string1=parts[0];
-																												   firstname=string1;
-																												   String string2=parts[1];
-																												   Log.e(TAG, "check_facebook"+str);
-																												   lastname=string2;
-																												}
-																												   }catch(Exception e){
-																													  e.printStackTrace();
-																												   }
-																												try{
-																												   if (object.has("email")){
-																													  Email=object.getString("email");
-																												   }
-																												   if (object.has("id")){
-																													  mediaId=object.getString("id");
-																												   }
-																												}catch(Exception e){
-																												   e.printStackTrace();
-																												}
-																												media="facebook";
-																												Log.e(TAG, "check_face_book_key:--"+mediaId);
-																												/*----hit google fb sign api method----*/
-																												if (CommonUtils.isConnectingToInternet(LoginActivity.this)){
-																												   //hit social login api
-																												   socailLoginApi(mediaId, media);
-																												}else{
-																												   //show alert message in toast
-																												   Toast.makeText(LoginActivity.this, getString(R.string.no_internet_string), Toast.LENGTH_SHORT).show();
-																												}
-																											 }catch(Exception e){
-																												e.printStackTrace();
-																											 }
-																											 pDialog.dismiss();
-																										  }
-																									   });
-														Bundle parameters=new Bundle();
-														parameters.putString("fields", "email,name");
-														request.setParameters(parameters);
-														request.executeAsync();
-													 }
 
-													 @Override
-													 public void onCancel(){
-														pDialog.dismiss();
-														// App code
-														System.out.println("Facebook cancelled");
-													 }
+   /*------facebook login ----*/
+   private void facebookLogin() {
+	  /*--permission array--*/
+	  ArrayList<String> fbPermissions = new ArrayList<String>();
+	  fbPermissions.add("public_profile");
+	  fbPermissions.add("email");
+	  LoginManager loginManager = LoginManager.getInstance();
+	  loginManager.logInWithReadPermissions(LoginActivity.this, fbPermissions);
+	  loginManager.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+		 @Override
+		 public void onSuccess(LoginResult loginResult) {
+			GraphRequest request = GraphRequest.newMeRequest(
+			   loginResult.getAccessToken(),
+			   new GraphRequest.GraphJSONObjectCallback() {
+				  @Override
+				  public void onCompleted(JSONObject object, GraphResponse response) {
+					 try {
+						Log.e("fbResponse", "" + response);
+						/*--get data from facebook login response---*/
+						firstname = object.getString("first_name");
+						lastname = object.getString("last_name");
+						mediaId = object.getString("id");
+						Email = object.optString("email");
+						Log.e(TAG, "\nfirstName" + firstname + "\nlastName" + "\nsocialMediaId" + mediaId + "\nemailid" + Email);
+						media = "facebook";
+						Log.e("social_id--", "" + mediaId);
+						Log.e("first_name--", "" + firstname);
+						Log.e("last_name--", "" + lastname);
+						Log.e("email--", "" + Email);
+						/*--social login api call--*/
+						if (CommonUtils.isConnectingToInternet(LoginActivity.this)) {
+						   socailLoginApi(mediaId, media);
+						} else {
+						   Toast.makeText(LoginActivity.this, "No Network Connection", Toast.LENGTH_SHORT).show();
+						}
+					 } catch (Exception ex) {
+						ex.printStackTrace();
+					 }
+				  }
+			   });
 
-													 @Override
-													 public void onError(FacebookException exception){
-														pDialog.dismiss();
-														exception.printStackTrace();
-														Log.e("check_fb_error", ""+exception);
-														if (AccessToken.getCurrentAccessToken()!=null){
-														   LoginManager.getInstance().logOut();
-														   AccessToken.setCurrentAccessToken(null);
-														   LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this, PERMISSIONS);
-														}
-													 }
-												  });
+			Bundle parameters = new Bundle();
+			parameters.putString("fields", "id,name,first_name,last_name,email");
+			request.setParameters(parameters);
+			request.executeAsync();
+		 }
+
+		 /*--o facebook request cancel--*/
+		 @Override
+		 public void onCancel() {
+			// App code
+			Toast.makeText(LoginActivity.this, "Login with Facebook cancelled", Toast.LENGTH_SHORT).show();
+			System.out.println("Login with Facebook cancelled");
+		 }
+
+		 @Override
+		 public void onError(FacebookException exception) {
+			exception.printStackTrace();
+			Toast.makeText(LoginActivity.this, "Facebook Error", Toast.LENGTH_SHORT).show();
+			System.out.println("Facebook Error");
+			if (AccessToken.getCurrentAccessToken() != null) {
+			   LoginManager.getInstance().logOut();
+			   AccessToken.setCurrentAccessToken(null);
+			}
+		 }
+	  });
    }
 
-   /*----google sign in method-----*/
+  /* ----google sign in method-----*/
    private void signIn(){
 	  try{
 		 Intent signInIntent=Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
@@ -334,26 +302,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 			}
 		 }
 	  }catch(Exception e){
-		 e.printStackTrace();
-	  }
-   }
-   /*logout form facebook */
-   public void disconnectFromFacebook() {
-	  try {
-		 if (AccessToken.getCurrentAccessToken() == null) {
-			return;        // already logged out
-		 }
-		 new GraphRequest(AccessToken.getCurrentAccessToken(), "/me/permissions/", null, HttpMethod.DELETE,
-						  new GraphRequest
-							 .Callback() {
-							 @Override
-							 public void onCompleted(GraphResponse graphResponse) {
-
-								LoginManager.getInstance().logOut();
-
-							 }
-						  }).executeAsync();
-	  } catch (Exception e) {
 		 e.printStackTrace();
 	  }
    }
@@ -470,8 +418,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
    @Override
    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
-	  callbackManager.onActivityResult(requestCode, resultCode, data);
 	  super.onActivityResult(requestCode, resultCode, data);
+	  callbackManager.onActivityResult(requestCode, resultCode, data);
 	  if (requestCode==RC_SIGN_IN){
 		 GoogleSignInResult result=Auth.GoogleSignInApi.getSignInResultFromIntent(data);
 		 int statusCode=result.getStatus().getStatusCode();
@@ -485,12 +433,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 	  Log.e(TAG, "handleSignInResult:"+result.isSuccess());
 	  try{
 		 if (result.isSuccess()){
-			/*--------Signed in successfully, show authenticated UI.------*/
+			//Signed in successfully, show authenticated UI
 			GoogleSignInAccount acct=result.getSignInAccount();
 			String str=acct.getDisplayName();
 			String str1=acct.getEmail();
 
-			/*----------this line use split two string eg. firstname and lastname---------*/
+			//this line use split two string eg. firstname and lastname
 			String[] parts=str.split(" ");
 			String string1=parts[0];
 			String string2=parts[1];
@@ -518,12 +466,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
    /*hit signin api*/
    public void socailLoginApi(final String social_media_id, final String social_media_name){
 	  pDialog.show();
-	  Call<SocialLoginBeen> aboutUserBeenCall;
+	  Call<SocialLoginBeen> socailLoginBeenCall;
 	  Log.e(TAG, "socailLoginApi---"+social_media_id+"--"+social_media_name+"---"+CommonVariables.AUTHORIZATIONKEY);
 	  try{
-		 aboutUserBeenCall=ApiClient.getClient().create(ApiInterface.class)
+		 socailLoginBeenCall=ApiClient.getClient().create(ApiInterface.class)
 									.socialLogin(CommonVariables.AUTHORIZATIONKEY, social_media_id, social_media_name);
-		 aboutUserBeenCall.enqueue(new Callback<SocialLoginBeen>(){
+		 socailLoginBeenCall.enqueue(new Callback<SocialLoginBeen>(){
 			@Override
 			public void onResponse(Call<SocialLoginBeen> call, Response<SocialLoginBeen> response){
 			   try{

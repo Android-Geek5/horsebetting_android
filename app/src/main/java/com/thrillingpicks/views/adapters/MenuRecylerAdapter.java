@@ -55,7 +55,6 @@ public class MenuRecylerAdapter extends RecyclerView.Adapter<MenuRecylerAdapter.
         myholder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 onClick.itemClick(v, i);
             }
         });

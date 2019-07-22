@@ -3,9 +3,8 @@ package com.thrillingpicks.views.activities;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
-import android.provider.Settings;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -69,7 +68,6 @@ public class CardListActivity extends AppCompatActivity implements View.OnClickL
    LinearLayout coupon_ll;
    RelativeLayout yes_rl, no_rl, single_spinner_layout;
    ImageView yes_unchecked, yes_checked, no_unchecked, no_checked;
-   String check_promo="Yes";
    Spinner coupon_spinner;
    ArrayList<String> list;
    ArrayList<String> referedamountarray;
@@ -113,7 +111,7 @@ public class CardListActivity extends AppCompatActivity implements View.OnClickL
 	  //clickable views
 	  clickView();
    }
-
+/*load data in  spinner */
    private void setData(){
 	  try{
 		 list=new ArrayList<>();
@@ -155,7 +153,6 @@ public class CardListActivity extends AppCompatActivity implements View.OnClickL
 			   fromactivity="PricingActivity";
 			   payment_rl.setVisibility(View.VISIBLE);
 			   price=getIntent().getStringExtra("price");
-//                    pay_price_tv.setText("$ " + price);
 			   detail_title_tv.setText("Payment");
 			   Subscription_id=getIntent().getStringExtra("Subscription_id");
 			   coupon_ll.setVisibility(View.VISIBLE);
@@ -174,7 +171,7 @@ public class CardListActivity extends AppCompatActivity implements View.OnClickL
 	* params: @Authorization, @user_token,@subscription_id
 	* */
    private void hitshowPriceApi(String authorizationkey, String token, String subscription_id){
-	  Call<ShowPriceBeen> sessionBeenCall;
+	  Call<ShowPriceBeen> showPriceBeenCall;
 	  final Dialog pDialog=new Dialog(this, android.R.style.Theme_Translucent);
 	  pDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 	  pDialog.setContentView(R.layout.custom_progress_dialog);
@@ -183,9 +180,9 @@ public class CardListActivity extends AppCompatActivity implements View.OnClickL
 	  Log.e(TAG,
 			"hitshowPriceApi---"+authorizationkey+"---"+token+"---"+subscription_id);
 	  try{
-		 sessionBeenCall=ApiClient.getClient().create(ApiInterface.class)
+		 showPriceBeenCall=ApiClient.getClient().create(ApiInterface.class)
 								  .getPrice(authorizationkey, token, subscription_id);
-		 sessionBeenCall.enqueue(new Callback<ShowPriceBeen>(){
+		 showPriceBeenCall.enqueue(new Callback<ShowPriceBeen>(){
 			@SuppressLint("SetTextI18n")
 			@Override
 			public void onResponse(Call<ShowPriceBeen> call, Response<ShowPriceBeen> response){
@@ -286,8 +283,8 @@ public class CardListActivity extends AppCompatActivity implements View.OnClickL
 		 }
 	  }, new CardOnSlide(){
 		 @Override
-		 public void onCardSlide(int Poistion){
-			cardOpen=Poistion;
+		 public void onCardSlide(int Position){
+			cardOpen=Position;
 			cardListAdapter.notifyDataSetChanged();
 		 }
 	  });

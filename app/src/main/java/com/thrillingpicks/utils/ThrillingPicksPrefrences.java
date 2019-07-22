@@ -25,7 +25,6 @@ public class ThrillingPicksPrefrences {
         editor.putString(key, value);
         editor.commit();
         updateCommonData(context);
-
     }
 
     // All the preferences saved are either String or boolean.Get String preferences here

@@ -2,29 +2,23 @@ package com.thrillingpicks.views.activities;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.thrillingpicks.R;
-import com.thrillingpicks.model.SessionBeen;
 import com.thrillingpicks.retrofit.ApiClient;
 import com.thrillingpicks.retrofit.ApiInterface;
 import com.thrillingpicks.utils.CommonUtils;
 import com.thrillingpicks.utils.CommonVariables;
-import com.thrillingpicks.utils.ThrillingPicksPrefrences;
 import com.thrillingpicks.views.activities.home.HomeNavigationActivity;
-import com.thrillingpicks.views.activities.signUpFlow.LoginTypeActivity;
-import com.thrillingpicks.views.activities.signUpFlow.SplashActivity;
 
 import org.json.JSONObject;
 
@@ -35,9 +29,7 @@ import retrofit2.Response;
 public class CancelSubscriptionActivity extends AppCompatActivity implements View.OnClickListener {
     final String TAG = CancelSubscriptionActivity.class.getSimpleName();
     private LinearLayout cancelSubscriptionBackLl;
-    private ImageView pricingBackIv;
-    private TextView cancelSubscriptionTitleTv,cancel_subscription_date_tv,cancel_subscription_price_tv;
-    private LinearLayout cancelSubscriptionDetailTv;
+    private TextView cancel_subscription_date_tv,cancel_subscription_price_tv;
     private Button cancelSubscriptionButton;
     private Dialog pDialog;
 
@@ -51,9 +43,6 @@ public class CancelSubscriptionActivity extends AppCompatActivity implements Vie
 
     private void initviews() {
         cancelSubscriptionBackLl = findViewById(R.id.cancel_subscription_back_ll);
-        pricingBackIv = findViewById(R.id.pricing_back_iv);
-        cancelSubscriptionTitleTv = findViewById(R.id.cancel_subscription_title_tv);
-        cancelSubscriptionDetailTv = findViewById(R.id.cancel_subscription_detail_tv);
         cancelSubscriptionButton = findViewById(R.id.cancel_subscription_button);
         cancel_subscription_date_tv = findViewById(R.id.cancel_subscription_date_tv);
         cancel_subscription_price_tv = findViewById(R.id.cancel_subscription_price_tv);
@@ -78,7 +67,6 @@ public class CancelSubscriptionActivity extends AppCompatActivity implements Vie
                 onBackPressed();
                 break;
             case R.id.cancel_subscription_button:
-                //hit api
                 //check internet connection
                 if (CommonUtils.isConnectingToInternet(CancelSubscriptionActivity.this)) {
                     //call method to hit cancel subscription api
@@ -94,19 +82,19 @@ public class CancelSubscriptionActivity extends AppCompatActivity implements Vie
     }
 
 
-    /*hit session api*/
+    /*hit cancel subscription api*/
     public void cancelSubscriptionApi(String token) {
-        Call<JsonObject> sessionBeenCall;
+        Call<JsonObject> cancelSubscriptionBeenCall;
         pDialog = new Dialog(CancelSubscriptionActivity.this, android.R.style.Theme_Translucent);
         pDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         pDialog.setContentView(R.layout.custom_progress_dialog);
         pDialog.setCancelable(false);
         pDialog.show();
-        Log.e(TAG, "SessionApi---" + token + "---" + CommonVariables.AUTHORIZATIONKEY);
+        Log.e(TAG, "cancelSubscriptionApi---" + token + "---" + CommonVariables.AUTHORIZATIONKEY);
         try {
-            sessionBeenCall = ApiClient.getClient().create(ApiInterface.class)
+            cancelSubscriptionBeenCall = ApiClient.getClient().create(ApiInterface.class)
                     .cancelSubscription(CommonVariables.AUTHORIZATIONKEY, token);
-            sessionBeenCall.enqueue(new Callback<JsonObject>() {
+            cancelSubscriptionBeenCall.enqueue(new Callback<JsonObject>() {
                 @Override
                 public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                     try {
@@ -122,15 +110,14 @@ public class CancelSubscriptionActivity extends AppCompatActivity implements Vie
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                             finish();
-
                         }
                         //check code equal to 0
                         else if (jsonObject.getString("code").equals("0")) {
-                            Log.e(TAG, "makePaymentApi--response--0-" + response.body());
+                            Log.e(TAG, "cancelSubscriptionApi--response--0-" + response.body());
                             //show alert message in toast
                             Toast.makeText(CancelSubscriptionActivity.this, "" + jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                         } else {
-                            Log.e(TAG, "makePaymentApi--response--111-" + response.body());
+                            Log.e(TAG, "cancelSubscriptionApi--response--111-" + response.body());
                             //show alert message in toast
                             Toast.makeText(CancelSubscriptionActivity.this, "" + jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                             //dismiss progress dialog

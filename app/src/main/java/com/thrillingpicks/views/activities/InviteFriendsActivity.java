@@ -46,9 +46,13 @@ public class InviteFriendsActivity extends AppCompatActivity implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invite_friends);
+        //method call to initialize view
         initView();
     }
 
+    /**
+     initialize views
+     */
     private void initView() {
         inviteBackIv = findViewById(R.id.invite_back_iv);
         inviteHeadingTv = findViewById(R.id.invite_heading_tv);
@@ -59,15 +63,21 @@ public class InviteFriendsActivity extends AppCompatActivity implements View.OnC
         inviteFriendsBackBtnTv = findViewById(R.id.invite_friends_back_btn_tv);
         //check internet conection validation
         if (CommonUtils.isConnectingToInternet(this)) {
-            //hit session  api
+            //hit invited api
             invitedApiHit(CommonVariables.TOKEN, CommonVariables.AUTHORIZATIONKEY);
         } else {
             //show message in toast
             Toast.makeText(this, getString(R.string.no_internet_string), Toast.LENGTH_SHORT).show();
         }
+        //method call to implement click on views
         clickView();
     }
 
+    /**
+     hit invited api
+     @param token
+     @param authorizationkey
+     */
     private void invitedApiHit(String token, String authorizationkey) {
         //initalize progress dialog
         final Dialog pDialog = new Dialog(InviteFriendsActivity.this, android.R.style.Theme_Translucent);
@@ -146,7 +156,7 @@ public class InviteFriendsActivity extends AppCompatActivity implements View.OnC
             Log.e(TAG, "invitedApiHit--error" + ex);
         }
     }
-
+/*implement click listener on views*/
     private void clickView() {
         inviteBackIv.setOnClickListener(this);
         inviteFriendsNowTv.setOnClickListener(this);

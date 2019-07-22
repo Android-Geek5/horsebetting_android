@@ -59,11 +59,12 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.Myhold
     @Override
     public void onBindViewHolder(@NonNull final CardListAdapter.Myholder myholder, final int i) {
         try {
-
+            //check previous activity
             if (fromactivity.equals("PricingActivity")) {
                 myholder.card_selected_rl.setVisibility(View.VISIBLE);
                 myholder.itemDeleteCard.setVisibility(View.GONE);
                 myholder.swipe_layout.setLockDrag(true);
+                //check position equal to selected position
                 if (selected == i) {
                     myholder.card_selected_iv.setVisibility(View.VISIBLE);
                     myholder.card_unselected_iv.setVisibility(View.GONE);
@@ -77,66 +78,62 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.Myhold
                 Log.e(TAG, "check postion" + cardOpen);
 
                 if (cardOpen == i) {
-
                 } else {
                     myholder.swipe_layout.close(true);
                 }
             }
 
-
+            //set card number
             myholder.itemCardNumber.setText("XXXX XXXX XXXX " + cardBeenList.get(i).getCardLastFourNumber());
+            //set card type
             myholder.itemCardType.setText(cardBeenList.get(i).getCardPaymentName().toString().toUpperCase());
+            //set expiry date
             myholder.itemExpDate.setText(cardBeenList.get(i).getCardExpMonth() + " / " + cardBeenList.get(i).getCardExpYear().toString().substring(2, 4));
+           //set card holder name
             myholder.itemCardHolderName.setText(cardBeenList.get(i).getName());
+           //check card type
             if (cardBeenList.get(i).getCardPaymentName().equals("Visa")) {
-
+                //add card image
                 Drawable img = context.getResources().getDrawable(R.drawable.visacard);
                 myholder.card_type_img_tv.setImageDrawable(img);
-
             }
             if (cardBeenList.get(i).getCardPaymentName().equals("MasterCard")) {
-
                 Drawable img = context.getResources().getDrawable(R.drawable.mastercard);
                 myholder.card_type_img_tv.setImageDrawable(img);
             }
             if (cardBeenList.get(i).getCardPaymentName().equals("American Express")) {
-
                 Drawable img = context.getResources().getDrawable(R.drawable.americanexpress);
                 myholder.card_type_img_tv.setImageDrawable(img);
             }
             if (cardBeenList.get(i).getCardPaymentName().equals("Discover")) {
-
                 Drawable img = context.getResources().getDrawable(R.drawable.discovercard);
                 myholder.card_type_img_tv.setImageDrawable(img);
             }
 
             if (cardBeenList.get(i).getCardPaymentName().equals("Diners Club")) {
-
                 Drawable img = context.getResources().getDrawable(R.drawable.dinnersclubcard);
                 myholder.card_type_img_tv.setImageDrawable(img);
             }
             if (cardBeenList.get(i).getCardPaymentName().equals("JCB")) {
-
                 Drawable img = context.getResources().getDrawable(R.drawable.jcbcard);
                 myholder.card_type_img_tv.setImageDrawable(img);
-
             }
 
             if (cardBeenList.get(i).getCardPaymentName().equals("UnionPay")) {
-
                 Drawable img = context.getResources().getDrawable(R.drawable.unionpay);
                 myholder.card_type_img_tv.setImageDrawable(img);
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
+        //item click for delete card
         myholder.itemDeleteCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 deleteCardOnClick.OnItemclick(v, i, cardBeenList.get(i).getCardId());
             }
         });
+        //implement swipe on layout
         myholder.swipe_layout.setSwipeListener(new SwipeRevealLayout.SwipeListener() {
             @Override
             public void onClosed(SwipeRevealLayout view) {
@@ -177,8 +174,7 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.Myhold
         private TextView itemCardHolderName;
         private TextView itemCardNumber;
         private TextView itemExpDate;
-        private TextView cvvTv;
-        private TextView cvvNumber;
+
         RelativeLayout card_selected_rl;
         ImageView card_selected_iv;
         ImageView card_unselected_iv;
@@ -188,18 +184,13 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.Myhold
         public Myholder(@NonNull View itemView) {
             super(itemView);
             //initialize views
-
-
-            itemDeleteCard = (ImageView) itemView.findViewById(R.id.item_delete_card);
-            card_type_img_tv = (ImageView) itemView.findViewById(R.id.card_type_img_tv);
-
-            cardRl = (RelativeLayout) itemView.findViewById(R.id.card_rl);
-            itemCardType = (TextView) itemView.findViewById(R.id.item_card_type);
-            itemCardHolderName = (TextView) itemView.findViewById(R.id.item_card_holder_name);
-            itemCardNumber = (TextView) itemView.findViewById(R.id.item_card_number);
-            itemExpDate = (TextView) itemView.findViewById(R.id.item_exp_date);
-            cvvTv = (TextView) itemView.findViewById(R.id.cvv_tv);
-            cvvNumber = (TextView) itemView.findViewById(R.id.cvv_number);
+            itemDeleteCard =  itemView.findViewById(R.id.item_delete_card);
+            card_type_img_tv =  itemView.findViewById(R.id.card_type_img_tv);
+            cardRl =  itemView.findViewById(R.id.card_rl);
+            itemCardType =  itemView.findViewById(R.id.item_card_type);
+            itemCardHolderName =  itemView.findViewById(R.id.item_card_holder_name);
+            itemCardNumber =  itemView.findViewById(R.id.item_card_number);
+            itemExpDate =  itemView.findViewById(R.id.item_exp_date);
             card_selected_rl = itemView.findViewById(R.id.card_selected_rl);
             card_selected_iv = itemView.findViewById(R.id.card_selected_iv);
             card_unselected_iv = itemView.findViewById(R.id.card_unselected_iv);

@@ -14,7 +14,6 @@ public class HomeTabsPagerAdapter extends FragmentStatePagerAdapter {
     int tabCount;
     Resources resources;
 
-
     public HomeTabsPagerAdapter(Resources resources, FragmentManager childFragmentManager, int tabCount) {
         super(childFragmentManager);
         this.resources = resources;

@@ -35,7 +35,6 @@ public class CommonUtils {
                     if (TextUtils.isEmpty(p_editText.getText().toString().trim())) {
                         try {
                             Toast.makeText(context, "" + p_nullMsg, Toast.LENGTH_SHORT).show();
-//                            showKeyboard(p_editText, context);
                         } catch (Exception ex) {
                             ex.printStackTrace();
                         }
@@ -94,7 +93,6 @@ public class CommonUtils {
                         m_isValid = false;
                         try {
                             Toast.makeText(context, "" + p_nullMsg, Toast.LENGTH_SHORT).show();
-//                            showKeyboard(p_editText, context);
                         } catch (Exception ex) {
                             ex.printStackTrace();
                         }
@@ -125,7 +123,6 @@ public class CommonUtils {
             } else {
                 Log.e("check_name_validion", "false");
                 Toast.makeText(context, "" + msg, Toast.LENGTH_SHORT).show();
-//                showKeyboard(editText, context);
                 return false;
             }
         } catch (Exception e) {
@@ -136,10 +133,7 @@ public class CommonUtils {
 
     /*check password length */
     public static boolean validPassword(Context context, EditText editText, String msg) {
-
-
         try {
-//            Pattern ps = Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$");
             Pattern ps = Pattern.compile("^(?=.*[0-9])[a-zA-Z0-9\\!\\@\\#\\$\\%\\&\\*]{6,}");
 
             Matcher ms = ps.matcher(editText.getText().toString());
@@ -149,7 +143,6 @@ public class CommonUtils {
             } else {
                 Log.e("check_name_validion", "false");
                 Toast.makeText(context, "" + msg, Toast.LENGTH_SHORT).show();
-//                showKeyboard(editText, context);
                 return false;
             }
 
@@ -185,7 +178,6 @@ public class CommonUtils {
                 return true;
             } else {
                 Toast.makeText(context, "" + msg, Toast.LENGTH_SHORT).show();
-
                 return false;
             }
         } catch (Exception e) {
@@ -220,11 +212,9 @@ public class CommonUtils {
 
     /*comare two dates*/
     public static String compareDate(String user_subscripuser_subscription_end_datetion_end_date) {
-        //Date format yyyy-MM-dd HH:ss:ss
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
         Log.e(TAG, "Today date:--" + dateFormat.format(date));
-
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date current_date = null, subs_end_date = null;
         try {
@@ -288,7 +278,6 @@ public class CommonUtils {
 
     }
     public static String getTomorrowDate(){
-        //Date format yyyy-MM-dd HH:ss:ss
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date dt = new Date();
         Calendar c = Calendar.getInstance();
@@ -307,10 +296,7 @@ public class CommonUtils {
         }
 
         System.out.println("date1 : " + sdf.format(current_date));
-
 return sdf.format(current_date);
-
-
     }
 
     public static String getTodayDate(){

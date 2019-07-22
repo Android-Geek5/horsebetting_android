@@ -53,6 +53,7 @@ public class RecentResultAdapter extends RecyclerView.Adapter<RecentResultAdapte
             e.printStackTrace();
             myholder.recentRaceDateTv.setText(""+recentResultList.get(i).getDateOfResult());
         }
+        //set data in views
         myholder.recentRaceNameTv.setText(""+recentResultList.get(i).getTrackName());
         myholder.recentRaceId.setText(""+recentResultList.get(i).getTrackId());
         myholder.recentRaceBetTotalTv.setText("$"+recentResultList.get(i).getBetTotal());
@@ -81,14 +82,14 @@ public class RecentResultAdapter extends RecyclerView.Adapter<RecentResultAdapte
         public Myholder(@NonNull View itemView) {
             super(itemView);
             //initalize views
-            recentRaceDateTv = (TextView) itemView.findViewById(R.id.recent_race_date_tv);
-            recentRaceNameTv = (TextView) itemView.findViewById(R.id.recent_race_name_tv);
-            recentRaceId = (TextView) itemView.findViewById(R.id.recent_race_id);
-            recentRaceBetType = (TextView) itemView.findViewById(R.id.recent_race_bet_type);
-            recentRaceSelectionTv = (TextView) itemView.findViewById(R.id.recent_race_selection_tv);
-            recentRaceBetTotalTv = (TextView) itemView.findViewById(R.id.recent_race_bet_total_tv);
-            recentRaceWinTv = (TextView) itemView.findViewById(R.id.recent_race_win_tv);
-            recentRaceDescTv = (TextView) itemView.findViewById(R.id.recent_race_desc_tv);
+            recentRaceDateTv =  itemView.findViewById(R.id.recent_race_date_tv);
+            recentRaceNameTv =  itemView.findViewById(R.id.recent_race_name_tv);
+            recentRaceId =  itemView.findViewById(R.id.recent_race_id);
+            recentRaceBetType =  itemView.findViewById(R.id.recent_race_bet_type);
+            recentRaceSelectionTv =  itemView.findViewById(R.id.recent_race_selection_tv);
+            recentRaceBetTotalTv =  itemView.findViewById(R.id.recent_race_bet_total_tv);
+            recentRaceWinTv =  itemView.findViewById(R.id.recent_race_win_tv);
+            recentRaceDescTv =  itemView.findViewById(R.id.recent_race_desc_tv);
         }
     }
 }

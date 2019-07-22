@@ -38,9 +38,7 @@ import retrofit2.Response;
 import static com.thrillingpicks.views.activities.home.HomeNavigationActivity.tomorrowTracklist;
 import static com.thrillingpicks.views.activities.home.HomeNavigationActivity.todayTracklist;
 
-/*
- * A simple {@link Fragment} subclass.
- */
+
 public class HomeFragment extends Fragment implements TabLayout.BaseOnTabSelectedListener {
 
     View myView;
@@ -112,7 +110,6 @@ public class HomeFragment extends Fragment implements TabLayout.BaseOnTabSelecte
 
     @Override
     public void onTabUnselected(TabLayout.Tab tab) {
-
     }
 
     @Override

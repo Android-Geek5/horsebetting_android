@@ -41,7 +41,6 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.Myholder> 
         this.context = context;
         this.tracklist = tracklist;
         this.userType = userType;
-
     }
 
     @NonNull
@@ -57,11 +56,11 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.Myholder> 
     @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     public void onBindViewHolder(@NonNull final DetailAdapter.Myholder myholder, int i) {
-
+       //set data in views
         myholder.race_number_tv.setText("Race #"+tracklist.get(i).getTrackRaceNumber());
         myholder.horse_detail_tv.setText("#"+tracklist.get(i).getTrackRaceHorseNumber()+" "+tracklist.get(i).getTrackRaceHorseName());
-
         myholder.desc_tv.setText(Html.fromHtml(tracklist.get(i).getTrackRaceDescription()));
+
         String date_time=tracklist.get(i).getTrackRaceDateTime();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm");
@@ -86,10 +85,6 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.Myholder> 
             myholder.paid_ll.setVisibility(View.VISIBLE);
 
         }
-
-
-
-//Race #
     }
 
     @Override
@@ -99,7 +94,7 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.Myholder> 
 
     public class Myholder extends RecyclerView.ViewHolder {
         TextView race_number_tv,desc_tv,rate_estimate_tv,horse_detail_tv;
-LinearLayout paid_ll,guest_ll;
+         LinearLayout paid_ll,guest_ll;
         public Myholder(@NonNull View itemView) {
             super(itemView);
             //initialize views

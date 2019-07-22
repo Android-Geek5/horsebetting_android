@@ -11,15 +11,14 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -38,26 +37,19 @@ import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.thrillingpicks.R;
-import com.thrillingpicks.model.EditInfoBeen;
-import com.thrillingpicks.model.EditInfoBeen;
-import com.thrillingpicks.model.EditInfoBeen;
 import com.thrillingpicks.model.SessionBeen;
 import com.thrillingpicks.retrofit.ApiClient;
 import com.thrillingpicks.retrofit.ApiInterface;
 import com.thrillingpicks.utils.CommonUtils;
 import com.thrillingpicks.utils.CommonVariables;
 import com.thrillingpicks.utils.ThrillingPicksPrefrences;
-import com.thrillingpicks.views.activities.home.HomeNavigationActivity;
 import com.thrillingpicks.views.activities.signUpFlow.LoginActivity;
-import com.thrillingpicks.views.activities.signUpFlow.SignUpActivity;
 
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.Date;
 import java.util.Objects;
 
@@ -74,6 +66,7 @@ import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class AccountActivity extends AppCompatActivity implements View.OnClickListener {
+    /*declare views and variables*/
     String TAG = AccountActivity.class.getSimpleName();
     ImageView edit_profile, save_profile, account_back;
     EditText user_email, user_name;
@@ -185,7 +178,6 @@ public class AccountActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.edit_profile:
-//                user_email.setEnabled(true);
                 user_name.setEnabled(true);
                 save_profile.setVisibility(View.VISIBLE);
                 edit_profile.setVisibility(View.GONE);
@@ -201,7 +193,6 @@ public class AccountActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.logout_tv:
                 //check button text is equal to edit or not
                 if (logout_tv.getText().equals("Edit")) {
-//                    user_email.setEnabled(true);
                     user_name.setEnabled(true);
                     user_dob.setOnClickListener(this);
                     logout_tv.setText("Save");
@@ -327,7 +318,6 @@ public class AccountActivity extends AppCompatActivity implements View.OnClickLi
             linearUploadImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //
                     getImageFromGallery();
 
                 }
@@ -380,16 +370,6 @@ public class AccountActivity extends AppCompatActivity implements View.OnClickLi
             e.printStackTrace();
         }
     }
-
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        if(checkPermission()){
-//
-//        }else {
-//            requestPermission();
-//        }
-//    }
 
     /*-----Choose image from gallery------*/
     public void getImageFromGallery() {
@@ -572,7 +552,7 @@ public class AccountActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    /*change dat into multipart */
+    /*change data into multipart */
     private void changetoMultipart() {
         try {
             //convert token into requestbody type
@@ -601,10 +581,9 @@ public class AccountActivity extends AppCompatActivity implements View.OnClickLi
 
     }
 
-    /*check feild validation*/
+    /*check fields validation*/
     private void checkValidation() {
         try {
-            String name = "", email = "", dob = "";
             //check name feild not null validation
             if (CommonUtils.validateForNull(this, user_name, getString(R.string.enter_name))) {
                 //check name pattren validation
@@ -629,7 +608,14 @@ public class AccountActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    /*update account info api hit*/
+    /**
+     update account info api hit
+     @param token
+     @param name
+     @param email
+     @param dob
+     @param user_profile_image
+     */
     public void updateAccoutinfoApi(RequestBody token, RequestBody name, RequestBody email, RequestBody dob, MultipartBody.Part user_profile_image) {
         //initialize progress dialog
         final Dialog pDialog = new Dialog(AccountActivity.this, android.R.style.Theme_Translucent);
